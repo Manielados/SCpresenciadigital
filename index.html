@@ -103,13 +103,10 @@
     <aside class="sum" aria-label="Tu estimado">
       <span class="slab">Tu estimado</span>
       <div class="from">Desde</div>
-      <div class="currency-row">
-        <label for="currency">Moneda</label>
-        <select id="currency" aria-label="Cambiar moneda del estimado">
-          <option value="DOP" selected>Pesos dominicanos (RD$)</option>
-          <option value="USD">Dólares estadounidenses (US$)</option>
-        </select>
-        <span class="rate">1 USD = RD$59.58</span>
+      <div class="currency-row" role="group" aria-label="Moneda del estimado">
+        <button type="button" class="cur" data-cur="DOP" aria-pressed="true" aria-label="Pesos dominicanos (RD$)"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="12" height="8" fill="#002d62"/><rect x="18" width="12" height="8" fill="#ce1126"/><rect y="12" width="12" height="8" fill="#ce1126"/><rect x="18" y="12" width="12" height="8" fill="#002d62"/></svg><span>RD$</span></button>
+        <button type="button" class="cur" data-cur="USD" aria-pressed="false" aria-label="Dólares estadounidenses (US$)"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#b22234"/><rect y="1.538" width="30" height="1.538" fill="#fff"/><rect y="4.615" width="30" height="1.538" fill="#fff"/><rect y="7.692" width="30" height="1.538" fill="#fff"/><rect y="10.769" width="30" height="1.538" fill="#fff"/><rect y="13.846" width="30" height="1.538" fill="#fff"/><rect y="16.923" width="30" height="1.538" fill="#fff"/><rect width="13" height="10.769" fill="#3c3b6e"/></svg><span>US$</span></button>
+        <span class="rate" id="rate"></span>
       </div>
       <div class="amt" id="amt">RD$12,000</div>
       <div class="days" id="days">5–7 días hábiles</div>

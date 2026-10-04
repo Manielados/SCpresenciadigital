@@ -25,7 +25,7 @@ const CFG = {
   var pages = 1, shown = CFG.base, tok = 0, touched = false, last = null;
   var STORAGE_KEY = 'sc-cotizador-currency';
   var savedCurrency = getSavedCurrency();
-  var currency = savedCurrency || 'DOP';
+  var currency = savedCurrency || guessCurrency();
 
   function getSavedCurrency() {
     try {
@@ -40,27 +40,31 @@ const CFG = {
     try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
   }
 
-  async function detectCurrencyByIP() {
-    if (savedCurrency) return;
+  // Moneda inicial sin servicios externos: zona horaria e idioma del navegador.
+  // Si es de RD -> RD$. Si es claramente de otro lugar -> US$. Si no se sabe -> RD$.
+  function guessCurrency() {
     try {
-      var response = await fetch('https://ipapi.co/country/', {
-        headers: { 'Accept': 'text/plain' },
-        cache: 'no-store'
-      });
-      if (!response.ok) throw new Error('IP lookup failed');
-      var country = (await response.text()).trim().toUpperCase();
-      currency = country === 'DO' ? 'DOP' : 'USD';
-    } catch (e) {
-      // Si el servicio de geolocalización no responde, mantenemos RD$ como opción segura.
-      currency = 'DOP';
-    }
-    $('currency').value = currency;
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      var langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']);
+      var esDO = langs.some(function (l) { return /^es[-_]DO$/i.test(l); });
+      if (tz === 'America/Santo_Domingo' || esDO) return 'DOP';
+      if (tz && !/^(UTC|Etc\/)/i.test(tz)) return 'USD';
+    } catch (e) {}
+    return 'DOP';
+  }
+
+  function setCurrency(value, remember) {
+    currency = value;
+    if (remember) saveCurrency(value);
+    document.querySelectorAll('.cur').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-cur') === value ? 'true' : 'false');
+    });
     render();
   }
 
   var fmt = function (n) {
     if (currency === 'USD') {
-      return 'US$' + (n / CFG.usdRate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return 'US$' + (Math.round(n / CFG.usdRate / 5) * 5).toLocaleString('en-US');
     }
     return 'RD$' + n.toLocaleString('en-US');
   };
@@ -124,10 +128,8 @@ const CFG = {
   document.querySelectorAll('.qt input').forEach(function (i) {
     i.addEventListener('change', function () { touched = true; render(); });
   });
-  $('currency').addEventListener('change', function () {
-    currency = this.value;
-    saveCurrency(currency);
-    render();
+  document.querySelectorAll('.cur').forEach(function (b) {
+    b.addEventListener('click', function () { setCurrency(b.getAttribute('data-cur'), true); });
   });
   $('go').addEventListener('click', function () {
     open('Hola, estuve armando mi web en el cotizador y me gustaría hablar de mi proyecto.' + (touched ? summary() : ''));
@@ -138,7 +140,6 @@ const CFG = {
     open('Hola, soy ' + v('n') + (v('c') ? ' (' + v('c') + ')' : '') + '. Me gustaría hablar de mi proyecto.' +
       (v('m') ? ' ' + v('m') : '') + (v('e') ? ' Mi correo: ' + v('e') : '') + summary());
   });
-  $('currency').value = currency;
-  render();
-  if (!savedCurrency) detectCurrencyByIP();
+  $('rate').textContent = '1 USD = RD$' + CFG.usdRate;
+  setCurrency(currency, false);
 })();
