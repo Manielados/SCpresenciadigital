@@ -167,6 +167,7 @@ footer a:hover{color:var(--verm)}
 .sum{top:auto;bottom:10px;padding:16px;z-index:5;box-shadow:0 10px 36px rgba(0,0,0,.5)}
 .sum .slab,.sum ul,.sum small{display:none}.sum .from{margin-top:0}.sum .amt{font-size:32px}.sum .btn{margin-top:10px}
 .c3,.c4{display:none}:root{--g:40px}
+.hero{padding-top:36px}.c1{top:calc(var(--g)*.5)}.c2{top:calc(var(--g)*1.5)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 /* botón flotante de WhatsApp: derecha, a la mitad de la pantalla */
