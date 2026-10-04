@@ -178,6 +178,5 @@ footer a:hover{color:var(--verm)}
 .wa:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 @media (max-width:640px){.wa{width:50px;height:50px;right:max(10px,env(safe-area-inset-right,0px))}.wa svg{width:27px;height:27px}}
 @media (prefers-reduced-motion:reduce){.wa{transition:none}}
-/* cuadros con el mismo grid del hero (solo dentro de cada cuadro) */
-.card,.step,.pc{position:relative;isolation:isolate}
-.card::before,.step::before,.pc::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background-image:linear-gradient(to right,rgba(243,235,221,.09) 1px,transparent 1px),linear-gradient(to bottom,rgba(243,235,221,.09) 1px,transparent 1px);background-size:var(--g) var(--g);-webkit-mask-image:radial-gradient(ellipse 110% 100% at 50% 0%,#000 25%,transparent 100%);mask-image:radial-gradient(ellipse 110% 100% at 50% 0%,#000 25%,transparent 100%)}
+/* cuadros del color --card con el grid del hero, cubriendo todo el cuadro */
+.card,.pc,.me .txt,.step,details,.q,form{background-image:linear-gradient(to right,rgba(243,235,221,.09) 1px,transparent 1px),linear-gradient(to bottom,rgba(243,235,221,.09) 1px,transparent 1px);background-size:var(--g) var(--g);background-position:-1px -1px}
