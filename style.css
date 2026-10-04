@@ -123,7 +123,7 @@ details p{padding:0 18px 16px;margin:0;font-size:14px;color:var(--mut)}
 .sum .slab{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#6b6760}
 .sum .from{margin-top:18px;font-size:13px;color:#6b6760}
 .sum .amt{font:900 clamp(38px,5vw,52px)/1.05 var(--serif);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.currency-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px;font-size:13px}.currency-row label{font-weight:800}.currency-row select{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:7px 30px 7px 9px;font:inherit;color:var(--ink);cursor:pointer}.currency-row .rate{color:var(--mut);font-size:12px}
+.currency-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 12px;font-size:13px}.currency-row label{font-weight:800}.currency-row select{border:1px solid #d7cdbd;background:var(--paper);border-radius:8px;padding:7px 30px 7px 9px;font:inherit;color:var(--bg);cursor:pointer;color-scheme:light}.currency-row select:hover{border-color:#b8aa95}.currency-row select:focus{border-color:var(--verm);outline:2px solid rgba(230,83,50,.2);outline-offset:1px}.currency-row select option{background:var(--paper);color:var(--bg)}.currency-row .rate{color:#6b6760;font-size:12px}
 .sum .days{margin-top:6px;font-size:14px;font-weight:500;color:#c2431f}
 .sum ul{list-style:none;margin:18px 0;padding:14px 0 0;border-top:1px solid #e3dccb;display:grid;gap:6px;font-size:13.5px}
 .sum li::before{content:"✓  ";color:var(--verm);font-weight:700}
