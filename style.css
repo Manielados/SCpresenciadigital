@@ -169,3 +169,10 @@ footer a:hover{color:var(--verm)}
 .c3,.c4{display:none}:root{--g:40px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+/* botón flotante de WhatsApp: derecha, a la mitad de la pantalla */
+.wa{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:20;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.45);transition:transform .18s,box-shadow .18s,filter .18s}
+.wa svg{width:30px;height:30px;display:block}
+.wa:hover{transform:translateY(-50%) scale(1.08);filter:brightness(1.06);box-shadow:0 8px 26px rgba(0,0,0,.55)}
+.wa:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+@media (max-width:640px){.wa{width:50px;height:50px;right:max(10px,env(safe-area-inset-right,0px))}.wa svg{width:27px;height:27px}}
+@media (prefers-reduced-motion:reduce){.wa{transition:none}}

@@ -140,6 +140,7 @@ const CFG = {
     open('Hola, soy ' + v('n') + (v('c') ? ' (' + v('c') + ')' : '') + '. Me gustaría hablar de mi proyecto.' +
       (v('m') ? ' ' + v('m') : '') + (v('e') ? ' Mi correo: ' + v('e') : '') + summary());
   });
+  $('wa').href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent('Hola, vi tu web y me gustaría hablar de mi proyecto.');
   $('rate').textContent = '1 USD = RD$' + CFG.usdRate;
   setCurrency(currency, false);
 
