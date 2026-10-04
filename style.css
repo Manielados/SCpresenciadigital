@@ -161,3 +161,14 @@ footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;fon
 .s2,.c1{display:none}
 .b1{width:52px;height:52px;top:-28px;right:4%}
 }
+.faq{padding:0 0 96px}
+.faq .g2{grid-template-columns:1fr 1.5fr;align-items:start}
+.faq h2{font-size:clamp(32px,4.4vw,52px);margin-top:14px}
+.qa{display:grid;gap:14px}
+.qa details{background:var(--paper);border:2px solid var(--ink);border-radius:20px;box-shadow:4px 4px 0 var(--ink);overflow:hidden}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font:700 19px/1.25 var(--serif)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";flex:none;width:32px;height:32px;display:grid;place-items:center;border:2px solid #20201e;border-radius:50%;background:var(--verm);color:#20201e;font:500 20px/1 var(--mono)}
+.qa details[open] summary::after{content:"\2212"}
+.qa details p{margin:0;padding:0 24px 22px;max-width:60ch}
+@media(max-width:800px){.faq .g2{grid-template-columns:1fr}.qa summary{font-size:17px;padding:18px 20px}.qa details p{padding:0 20px 20px}}
