@@ -15,7 +15,7 @@
 <body>
 <nav><div class="w">
 <a class="logo" href="#top" aria-label="SC Presencia Digital"><img src="assets/logo-sc-crema.png" width="52" height="38" alt="SC Presencia Digital"></a>
-<div class="menu"><a href="#proceso">Cómo trabajamos</a><a href="#quien-soy">Quién soy</a><a href="#paquetes">Paquetes</a><a href="#faq">Preguntas</a><a class="btn p" href="#contacto">Iniciar conversación</a></div>
+<div class="menu"><a href="#proceso">Cómo trabajamos</a><a href="#quien-soy">Quién soy</a><a href="#cotizador">Cotizar</a><a href="#faq">Preguntas</a><a class="btn p" href="#contacto">Iniciar conversación</a></div>
 </div></nav>
 
 <main id="top">
@@ -29,8 +29,8 @@
     <p class="s2">Diseñamos webs para profesionales y negocios de servicios que necesitan convertir interés en confianza y acción.</p>
     <div class="cta"><a class="btn p" href="#contacto">Hablemos de tu proyecto →</a><a class="btn" href="#proceso">Cómo trabajamos</a></div>
     <div class="stats">
-      <div><b>RD$12,000</b><span>Landing desde</span></div>
-      <div><b>5–7 días</b><span>Entrega de landing</span></div>
+      <div><b>RD$12,000</b><span>Tu web, desde</span></div>
+      <div><b>5–7 días</b><span>Entrega, desde</span></div>
       <div><b>15 días</b><span>Garantía técnica</span></div>
     </div>
   </div>
@@ -84,20 +84,35 @@
   </div>
 </div></section>
 
-<section class="pk" id="paquetes"><div class="w">
-  <div class="head">
-    <div><span class="lab">Paquetes</span><h2>Tres paquetes,<br>un mismo método.</h2><p>Todos incluyen copy básico, SEO on-page básico y 2 rondas de revisión.</p></div>
-    <a class="btn" href="#contacto">Pedir propuesta ↗</a>
+<section class="qt" id="cotizador"><div class="w">
+  <div class="head"><span class="lab">Cotiza</span><h2>Arma tu web y mira cuánto cuesta.</h2><p>Elige lo que necesitas y el estimado se ajusta solo. Parte desde RD$12,000.</p></div>
+  <div class="qgrid">
+    <div>
+      <div class="q" role="group" aria-labelledby="q1"><h3 id="q1">¿Cuántas páginas necesita tu web?</h3><p class="hint">Por ejemplo: inicio, servicios, sobre ti, contacto. Si no estás seguro, déjalo en 1 y lo definimos juntos.</p>
+        <div class="stp"><button type="button" id="minus" aria-label="Quitar una página">−</button><output id="pg" aria-live="off">1</output><button type="button" id="plus" aria-label="Agregar una página">+</button></div></div>
+      <fieldset class="q"><legend>¿Quién define qué dice tu web?</legend><p class="hint">Los textos son lo que más pesa en que alguien confíe.</p>
+        <label class="opt"><input type="radio" name="copy" value="own" checked><span><b>Ya tengo mis textos</b><em>Los organizamos y los publicamos tal como los tienes.</em></span></label>
+        <label class="opt"><input type="radio" name="copy" value="help"><span><b>Ayúdame a definir qué decir</b><em>Trabajamos contigo el mensaje y escribimos los textos.</em></span></label></fieldset>
+      <fieldset class="q"><legend>¿Cómo quieres que se vea?</legend><p class="hint">Elige el punto de partida del diseño.</p>
+        <label class="opt"><input type="radio" name="design" value="base" checked><span><b>Una base bien trabajada</b><em>Partimos de una estructura probada y la adaptamos a tu marca.</em></span></label>
+        <label class="opt"><input type="radio" name="design" value="similar"><span><b>Parecida a otra web que me gusta</b><em>Me muestras la referencia y construimos algo en esa línea.</em></span></label>
+        <label class="opt"><input type="radio" name="design" value="custom"><span><b>Hecha a mi medida</b><em>Un diseño pensado desde cero para tu negocio.</em></span></label></fieldset>
+      <fieldset class="q"><legend>¿Quieres que nos encarguemos después?</legend><p class="hint">Es un servicio aparte: no suma al estimado, se cotiza por separado.</p>
+        <label class="opt cb"><input type="checkbox" id="maint"><span><b>Mantenimiento mensual y actualizaciones</b><em>Nos encargamos de mantener tu web y de actualizarla cada mes.</em></span></label></fieldset>
+    </div>
+    <aside class="sum" aria-label="Tu estimado">
+      <span class="slab">Tu estimado</span>
+      <div class="from">Desde</div>
+      <div class="amt" id="amt">RD$12,000</div>
+      <div class="days" id="days">5–7 días hábiles</div>
+      <span class="sr" id="sr" aria-live="polite"></span>
+      <ul id="picks"></ul>
+      <p class="warn" id="cust" hidden>Esto ya se parece a un proyecto a medida. Hablemos y lo afinamos juntos.</p>
+      <button type="button" class="btn p" id="go">Hablemos de tu proyecto</button>
+      <small>Es un estimado. El precio final se confirma en la propuesta, antes de construir.</small>
+    </aside>
   </div>
-  <div class="panel">
-    <p class="day"><b>Para empezar</b> 5–7 días hábiles</p>
-    <div class="ev"><div><h3>Landing page</h3><p class="d">Una página enfocada en una sola acción.</p><div class="tags"><span>Copy básico</span><span>SEO on-page</span><span class="o">2 revisiones</span></div></div><div class="pr"><small>Desde</small>RD$12,000</div></div>
-    <p class="day"><b>Más completo</b> 7–10 días hábiles</p>
-    <div class="ev"><div><h3>Web sencilla</h3><p class="d">2 a 5 páginas, con blog y perfil de Google My Business.</p><div class="tags"><span>Blog</span><span>Google My Business</span><span class="o">2 revisiones</span></div></div><div class="pr"><small>Desde</small>RD$18,000</div></div>
-    <p class="day"><b>Para crecer</b> 16–20 días hábiles</p>
-    <div class="ev"><div><h3>Web corporativa</h3><p class="d">Estructura amplia para empresas con varios servicios.</p><div class="tags"><span>Multi-servicio</span><span>SEO on-page</span><span class="o">2 revisiones</span></div></div><div class="pr"><small>Desde</small>RD$25,000</div></div>
-  </div>
-  <p class="note">Son precios de entrada: el final te lo confirmo en una propuesta antes de que firmes. Pago: 50% antes de empezar y 50% al entregar.</p>
+  <p class="inc"><span><b>Incluido siempre:</b></span><span>Lo básico para que te encuentren en Google</span><span>2 rondas de ajustes</span><span>15 días de garantía técnica</span><span>Pago: 50% antes de empezar y 50% al entregar</span></p>
 </div></section>
 
 <section class="contact" id="contacto"><div class="w">
@@ -115,11 +130,6 @@
     <div class="two"><div><label for="n">Nombre *</label><input id="n" type="text" required placeholder="María Pérez" autocomplete="name"></div>
     <div><label for="e">Correo</label><input id="e" type="email" placeholder="maria@negocio.com" autocomplete="email"></div></div>
     <div><label for="c">Negocio</label><input id="c" type="text" placeholder="¿A qué se dedica tu negocio?"></div>
-    <fieldset><legend>Me interesa</legend><div class="opts">
-      <label><input type="radio" name="i" value="una landing page" checked><span>Landing page</span></label>
-      <label><input type="radio" name="i" value="una web sencilla"><span>Web sencilla</span></label>
-      <label><input type="radio" name="i" value="una web corporativa"><span>Web corporativa</span></label>
-      <label><input type="radio" name="i" value="resolver una duda"><span>Solo una duda</span></label></div></fieldset>
     <div><label for="m">Mensaje</label><textarea id="m" placeholder="Cuéntame un poco más…"></textarea></div>
     <button class="btn p" type="submit">Hablemos de tu proyecto</button>
     <small>Se abrirá WhatsApp con tu mensaje listo para enviar.</small>
@@ -142,12 +152,6 @@
   <a class="logo" href="#top" aria-label="SC Presencia Digital"><img src="assets/logo-sc-crema.png" width="52" height="38" alt="SC Presencia Digital"></a>
   <span><a href="https://instagram.com/sc.presenciadigital" target="_blank" rel="noopener">Instagram</a> &nbsp; © 2026 SC Presencia Digital · República Dominicana</span>
 </div></footer>
-<script>
-document.getElementById('f').addEventListener('submit',function(ev){ev.preventDefault();
-var v=function(i){return document.getElementById(i).value.trim()},
-i=document.querySelector('input[name=i]:checked').value,
-t='Hola, soy '+v('n')+(v('c')?' ('+v('c')+')':'')+'. Me interesa '+i+'.'+(v('m')?' '+v('m'):'')+(v('e')?' Mi correo: '+v('e'):'');
-window.open('https://wa.me/18096278994?text='+encodeURIComponent(t),'_blank','noopener')});
-</script>
+<script src="script.js" defer></script>
 </body>
 </html>
