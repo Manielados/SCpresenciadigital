@@ -10,6 +10,7 @@ const CFG = {
   perPageDays: 1,
   maxPages: 12,
   copy: { fee: 2000, perPage: 1000, days: 3 },   // cuando el cliente necesita ayuda con los textos
+  usdRate: 59.58,                              // 1 USD = RD$59.58
   design: {
     base:    { fee: 0,    days: 0, label: 'con base trabajada' },
     similar: { fee: 4000, days: 2, label: 'parecido a otra web que te gusta' },
@@ -22,7 +23,13 @@ const CFG = {
   var $ = function (id) { return document.getElementById(id); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pages = 1, shown = CFG.base, tok = 0, touched = false, last = null;
-  var fmt = function (n) { return 'RD$' + n.toLocaleString('en-US'); };
+  var currency = 'DOP';
+  var fmt = function (n) {
+    if (currency === 'USD') {
+      return 'US$' + (n / CFG.usdRate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    return 'RD$' + n.toLocaleString('en-US');
+  };
   var radio = function (n) { return document.querySelector('input[name=' + n + ']:checked').value; };
 
   function calc() {
@@ -83,6 +90,7 @@ const CFG = {
   document.querySelectorAll('.qt input').forEach(function (i) {
     i.addEventListener('change', function () { touched = true; render(); });
   });
+  $('currency').addEventListener('change', function () { currency = this.value; render(); });
   $('go').addEventListener('click', function () {
     open('Hola, estuve armando mi web en el cotizador y me gustaría hablar de mi proyecto.' + (touched ? summary() : ''));
   });

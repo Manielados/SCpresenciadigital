@@ -103,6 +103,14 @@
     <aside class="sum" aria-label="Tu estimado">
       <span class="slab">Tu estimado</span>
       <div class="from">Desde</div>
+      <div class="currency-row">
+        <label for="currency">Moneda</label>
+        <select id="currency" aria-label="Cambiar moneda del estimado">
+          <option value="DOP" selected>Pesos dominicanos (RD$)</option>
+          <option value="USD">Dólares estadounidenses (US$)</option>
+        </select>
+        <span class="rate">1 USD = RD$59.58</span>
+      </div>
       <div class="amt" id="amt">RD$12,000</div>
       <div class="days" id="days">5–7 días hábiles</div>
       <span class="sr" id="sr" aria-live="polite"></span>
