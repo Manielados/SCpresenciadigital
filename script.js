@@ -142,4 +142,14 @@ const CFG = {
   });
   $('rate').textContent = '1 USD = RD$' + CFG.usdRate;
   setCurrency(currency, false);
+
+  // FAQ: al abrir una pregunta, un scroll suave la deja completa a la vista.
+  document.querySelectorAll('.faq details').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      requestAnimationFrame(function () {
+        d.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+  });
 })();

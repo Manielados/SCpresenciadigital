@@ -90,7 +90,7 @@ nav .w{display:flex;align-items:center;justify-content:space-between;height:62px
 .faq{padding:88px 0}
 .faq .w{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start}
 .qs{display:grid;gap:10px}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px}
+details{scroll-margin:80px 0 28px;background:var(--card);border:1px solid var(--line);border-radius:12px}
 summary{cursor:pointer;list-style:none;padding:16px 18px;font:700 14px/1.4 var(--sans);display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--verm);font:500 18px/1 var(--mono)}
