@@ -23,7 +23,41 @@ const CFG = {
   var $ = function (id) { return document.getElementById(id); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pages = 1, shown = CFG.base, tok = 0, touched = false, last = null;
-  var currency = 'DOP';
+  var STORAGE_KEY = 'sc-cotizador-currency';
+  var savedCurrency = getSavedCurrency();
+  var currency = savedCurrency || 'DOP';
+
+  function getSavedCurrency() {
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      return saved === 'USD' || saved === 'DOP' ? saved : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveCurrency(value) {
+    try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
+  }
+
+  async function detectCurrencyByIP() {
+    if (savedCurrency) return;
+    try {
+      var response = await fetch('https://ipapi.co/country/', {
+        headers: { 'Accept': 'text/plain' },
+        cache: 'no-store'
+      });
+      if (!response.ok) throw new Error('IP lookup failed');
+      var country = (await response.text()).trim().toUpperCase();
+      currency = country === 'DO' ? 'DOP' : 'USD';
+    } catch (e) {
+      // Si el servicio de geolocalización no responde, mantenemos RD$ como opción segura.
+      currency = 'DOP';
+    }
+    $('currency').value = currency;
+    render();
+  }
+
   var fmt = function (n) {
     if (currency === 'USD') {
       return 'US$' + (n / CFG.usdRate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -90,7 +124,11 @@ const CFG = {
   document.querySelectorAll('.qt input').forEach(function (i) {
     i.addEventListener('change', function () { touched = true; render(); });
   });
-  $('currency').addEventListener('change', function () { currency = this.value; render(); });
+  $('currency').addEventListener('change', function () {
+    currency = this.value;
+    saveCurrency(currency);
+    render();
+  });
   $('go').addEventListener('click', function () {
     open('Hola, estuve armando mi web en el cotizador y me gustaría hablar de mi proyecto.' + (touched ? summary() : ''));
   });
@@ -100,5 +138,7 @@ const CFG = {
     open('Hola, soy ' + v('n') + (v('c') ? ' (' + v('c') + ')' : '') + '. Me gustaría hablar de mi proyecto.' +
       (v('m') ? ' ' + v('m') : '') + (v('e') ? ' Mi correo: ' + v('e') : '') + summary());
   });
+  $('currency').value = currency;
   render();
+  if (!savedCurrency) detectCurrencyByIP();
 })();
