@@ -39,8 +39,8 @@ nav .w{display:flex;align-items:center;justify-content:space-between;height:62px
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:rgba(43,42,39,.8);color:var(--cream)}
 .badge i{width:6px;height:6px;border-radius:50%;background:var(--verm)}
 .hero h1{font-size:clamp(36px,6.2vw,70px);max-width:18ch;margin:26px auto 0;letter-spacing:-.035em;line-height:1.02}
-.hero .s1{font-size:19px;max-width:50ch;margin:26px auto 8px;color:var(--cream)}
-.hero .s2{font-size:15.5px;max-width:56ch;margin:0 auto 30px;color:var(--mut)}
+.hero .s0{font-size:clamp(18px,2.4vw,22px);line-height:1.35;max-width:34ch;margin:24px auto 12px;color:var(--cream)}
+.hero .s1{font-size:15.5px;max-width:56ch;margin:0 auto 30px;color:var(--mut)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);margin:72px 0 80px;border:1px solid var(--line);border-radius:14px;background:rgba(43,42,39,.7)}
 .stats div{padding:24px 16px}.stats div+div{border-left:1px solid var(--line)}
