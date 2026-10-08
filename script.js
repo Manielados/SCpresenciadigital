@@ -103,7 +103,7 @@ const CFG = {
     $('days').textContent = c.lo + '–' + c.hi + ' días hábiles';
     $('sr').textContent = 'Estimado desde ' + fmt(c.price) + ', entrega en ' + c.lo + ' a ' + c.hi + ' días hábiles.';
     var items = [pages + (pages === 1 ? ' página' : ' páginas'),
-      c.help ? 'Te ayudamos a definir qué decir' : 'Ya tienes tus textos',
+      c.help ? 'Te ayudo a definir qué decir' : 'Ya tienes tus textos',
       'Diseño ' + c.d.label];
     if (c.maint) items.push('Mantenimiento mensual (se cotiza aparte)');
     $('picks').innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
