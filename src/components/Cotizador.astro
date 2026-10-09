@@ -1,0 +1,35 @@
+<section class="qt" id="cotizador"><div class="w">
+  <div class="head"><span class="lab">Cotiza</span><h2>Arma tu web y mira cuánto cuesta.</h2><p>Elige lo que necesitas y el estimado se ajusta solo. Parte desde RD$12,000.</p></div>
+  <div class="qgrid">
+    <div>
+      <div class="q" role="group" aria-labelledby="q1"><h3 id="q1">¿Cuántas páginas necesita tu web?</h3><p class="hint">Por ejemplo: inicio, servicios, sobre ti, contacto. Si no estás seguro, déjalo en 1 y lo definimos juntos.</p>
+        <div class="stp"><button type="button" id="minus" aria-label="Quitar una página">−</button><output id="pg" aria-live="off">1</output><button type="button" id="plus" aria-label="Agregar una página">+</button></div></div>
+      <fieldset class="q"><legend>¿Quién define qué dice tu web?</legend><p class="hint">Los textos son lo que más pesa en que alguien confíe.</p>
+        <label class="opt"><input type="radio" name="copy" value="own" checked><span><b>Ya tengo mis textos</b><em>Los organizo y los publico tal como los tienes.</em></span></label>
+        <label class="opt"><input type="radio" name="copy" value="help"><span><b>Ayúdame a definir qué decir</b><em>Trabajo contigo el mensaje y escribo los textos.</em></span></label></fieldset>
+      <fieldset class="q"><legend>¿Cómo quieres que se vea?</legend><p class="hint">Elige el punto de partida del diseño.</p>
+        <label class="opt"><input type="radio" name="design" value="base" checked><span><b>Una base bien trabajada</b><em>Parto de una estructura probada y la adapto a tu marca.</em></span></label>
+        <label class="opt"><input type="radio" name="design" value="similar"><span><b>Parecida a otra web que me gusta</b><em>Me muestras la referencia y construyo algo en esa línea.</em></span></label>
+        <label class="opt"><input type="radio" name="design" value="custom"><span><b>Hecha a mi medida</b><em>Un diseño pensado desde cero para tu negocio.</em></span></label></fieldset>
+      <fieldset class="q"><legend>¿Quieres que me encargue después?</legend><p class="hint">Es un servicio aparte: no suma al estimado, se cotiza por separado.</p>
+        <label class="opt cb"><input type="checkbox" id="maint"><span><b>Mantenimiento mensual y actualizaciones</b><em>Me encargo de mantener tu web y de actualizarla cada mes.</em></span></label></fieldset>
+    </div>
+    <aside class="sum" aria-label="Tu estimado">
+      <span class="slab">Tu estimado</span>
+      <div class="from">Desde</div>
+      <div class="currency-row" role="group" aria-label="Moneda del estimado">
+        <button type="button" class="cur" data-cur="DOP" aria-pressed="true" aria-label="Pesos dominicanos (RD$)"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="12" height="8" fill="#002d62"/><rect x="18" width="12" height="8" fill="#ce1126"/><rect y="12" width="12" height="8" fill="#ce1126"/><rect x="18" y="12" width="12" height="8" fill="#002d62"/></svg><span>RD$</span></button>
+        <button type="button" class="cur" data-cur="USD" aria-pressed="false" aria-label="Dólares estadounidenses (US$)"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#b22234"/><rect y="1.538" width="30" height="1.538" fill="#fff"/><rect y="4.615" width="30" height="1.538" fill="#fff"/><rect y="7.692" width="30" height="1.538" fill="#fff"/><rect y="10.769" width="30" height="1.538" fill="#fff"/><rect y="13.846" width="30" height="1.538" fill="#fff"/><rect y="16.923" width="30" height="1.538" fill="#fff"/><rect width="13" height="10.769" fill="#3c3b6e"/></svg><span>US$</span></button>
+        <span class="rate" id="rate"></span>
+      </div>
+      <div class="amt" id="amt">RD$12,000</div>
+      <div class="days" id="days">5–7 días hábiles</div>
+      <span class="sr" id="sr" aria-live="polite"></span>
+      <ul id="picks"></ul>
+      <p class="warn" id="cust" hidden>Esto ya se parece a un proyecto a medida. Hablemos y lo afinamos juntos.</p>
+      <button type="button" class="btn p" id="go">Hablemos de tu proyecto</button>
+      <small>Es un estimado. El precio final se confirma en la propuesta, antes de construir.</small>
+    </aside>
+  </div>
+  <p class="inc"><span><b>Incluido siempre:</b></span><span>Lo básico para que te encuentren en Google</span><span>2 rondas de ajustes</span><span>15 días de garantía técnica</span><span>Pago: 50% antes de empezar y 50% al entregar</span></p>
+</div></section>
