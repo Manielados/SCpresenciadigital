@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Problema from '../components/Problema.astro';
 import ParaQuien from '../components/ParaQuien.astro';
@@ -10,22 +9,18 @@ import QuienSoy from '../components/QuienSoy.astro';
 import Cotizador from '../components/Cotizador.astro';
 import Contacto from '../components/Contacto.astro';
 import Faq from '../components/Faq.astro';
-import Footer from '../components/Footer.astro';
-import WhatsAppFab from '../components/WhatsAppFab.astro';
 ---
-<Layout>
-  <Nav />
-  <main id="top">
-    <Hero />
-    <Problema />
-    <ParaQuien />
-    <Proceso />
-    <Trabajos />
-    <QuienSoy />
-    <Cotizador />
-    <Contacto />
-    <Faq />
-  </main>
-  <Footer />
-  <WhatsAppFab />
+<Layout
+  title="SC Presencia Digital · Webs para profesionales y negocios de servicios"
+  description="Diseño webs para profesionales y negocios de servicios que necesitan convertir interés en confianza y acción. Primero entiendo, investigo y propongo; construyo cuando tú apruebas."
+>
+  <Hero />
+  <Problema />
+  <ParaQuien />
+  <Proceso />
+  <Trabajos />
+  <QuienSoy />
+  <Cotizador />
+  <Contacto />
+  <Faq />
 </Layout>
