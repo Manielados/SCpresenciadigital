@@ -22,3 +22,26 @@
     });
   });
 })();
+
+/* Menú hamburguesa: abrir/cerrar en móvil. */
+(function () {
+  var nav = document.getElementById('nav');
+  var btn = nav && nav.querySelector('.nav-toggle');
+  if (!nav || !btn) return;
+  function set(open) {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  btn.addEventListener('click', function () { set(!nav.classList.contains('open')); });
+  nav.querySelectorAll('.menu a').forEach(function (a) {
+    a.addEventListener('click', function () { set(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
+  });
+  document.addEventListener('click', function (e) { if (!nav.contains(e.target)) set(false); });
+  var desktop = window.matchMedia('(min-width: 821px)');
+  desktop.addEventListener('change', function (e) { if (e.matches) set(false); });
+})();
+
