@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPosts, formatDate } from '../../lib/blog';
+
+const posts = await getPosts();
+---
+<Layout
+  title="Blog · SC Presencia Digital"
+  description="Ideas prácticas para que tu web trabaje por tu negocio: diseño, contenido y cómo convertir visitas en clientes."
+>
+  <section class="blog"><div class="w">
+    <div class="head">
+      <span class="lab">Blog</span>
+      <h1>Ideas para que tu web trabaje por ti.</h1>
+      <p>Notas cortas y prácticas sobre diseño web, contenido y cómo convertir visitas en conversaciones.</p>
+    </div>
+    {posts.length === 0 ? (
+      <p class="empty">Aún no hay artículos publicados. Vuelve pronto.</p>
+    ) : (
+      <div class="posts">
+        {posts.map((p) => (
+          <a class="pc" href={`/blog/${p.slug}/`}>
+            {p.imagen && <img src={p.imagen} alt="" loading="lazy" width="1200" height="630" />}
+            <div class="in">
+              <time datetime={p.fecha ?? ''}>{formatDate(p.fecha)}</time>
+              <h2>{p.titulo}</h2>
+              <p>{p.resumen}</p>
+              <span class="more">Leer artículo →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div></section>
+</Layout>

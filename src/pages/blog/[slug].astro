@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPosts, getPost, formatDate } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getPost(slug!);
+if (!post) return Astro.redirect('/blog/');
+
+// Datos estructurados para Google (artículo de blog).
+const base = Astro.site ?? new URL(Astro.url.origin);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.titulo,
+  description: post.resumen,
+  datePublished: post.fecha,
+  mainEntityOfPage: new URL(Astro.url.pathname, base).href,
+  ...(post.imagen && { image: new URL(post.imagen, base).href }),
+  author: { '@type': 'Organization', name: 'SC Presencia Digital' },
+};
+---
+<Layout title={`${post.titulo} · SC Presencia Digital`} description={post.resumen} ogImage={post.imagen ?? undefined}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+  <article class="post"><div class="w">
+    <a class="back" href="/blog/">← Volver al blog</a>
+    <time datetime={post.fecha ?? ''}>{formatDate(post.fecha)}</time>
+    <h1>{post.titulo}</h1>
+    {post.imagen && <img class="cover" src={post.imagen} alt="" width="1200" height="630" />}
+    <div class="pbody" set:html={post.html} />
+    <div class="cta">
+      <h3>¿Quieres una web que trabaje así para tu negocio?</h3>
+      <p>Cuéntame qué haces y qué necesitas. Te respondo con una propuesta clara.</p>
+      <a class="btn p" href="/#contacto">Hablemos de tu proyecto</a>
+    </div>
+  </div></article>
+</Layout>
