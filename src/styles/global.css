@@ -28,7 +28,7 @@ nav .w{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height
 .menu{display:contents;font-size:13px}
 .menu .links{display:flex;align-items:center;gap:30px}
 .menu .btn{justify-self:end}
-.menu a:not(.btn){color:var(--cream);opacity:.85}.menu a:not(.btn):hover{color:var(--verm);opacity:1}
+.menu a:not(.btn){color:var(--cream);opacity:.85;font-weight:700}.menu a:not(.btn):hover{color:var(--verm);opacity:1}
 .menu .btn{padding:8px 14px;font-size:12px}
 /* hero */
 .hero{position:relative;overflow:hidden;border-top:0;padding:96px 0 0;isolation:isolate;text-align:center}
