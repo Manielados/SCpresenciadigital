@@ -1,16 +1,23 @@
 ---
-// Marca la página activa en el menú
+// Páginas del menú. Para añadir una nueva, agrega una línea aquí.
+const paginas = [
+  { href: '/', texto: 'Inicio' },
+  { href: '/servicios/', texto: 'Servicios' },
+  { href: '/trabajos/', texto: 'Trabajos' },
+  { href: '/cotizar/', texto: 'Cotizar' },
+  { href: '/blog/', texto: 'Blog' },
+];
 const ruta = Astro.url.pathname;
-const enInicio = ruta === '/';
-const enBlog = ruta.startsWith('/blog');
+const activa = (href: string) => (href === '/' ? ruta === '/' : ruta.startsWith(href.slice(0, -1)));
 ---
 <nav id="nav"><div class="w">
 <a class="logo" href="/" aria-label="SC Presencia Digital, inicio"><img src="/assets/logo-sc-crema.png" width="52" height="38" alt="SC Presencia Digital"></a>
 <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
 <div class="menu" id="menu">
   <div class="links">
-    <a href="/" aria-current={enInicio ? 'page' : undefined}>Inicio</a>
-    <a href="/blog/" aria-current={enBlog ? 'page' : undefined}>Blog</a>
+    {paginas.map((p) => (
+      <a href={p.href} aria-current={activa(p.href) ? 'page' : undefined}>{p.texto}</a>
+    ))}
   </div>
   <a class="btn p" href="/#contacto">Hablemos de tu proyecto</a>
 </div>

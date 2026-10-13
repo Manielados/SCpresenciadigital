@@ -41,7 +41,7 @@
     if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); btn.focus(); }
   });
   document.addEventListener('click', function (e) { if (!nav.contains(e.target)) set(false); });
-  var desktop = window.matchMedia('(min-width: 821px)');
+  var desktop = window.matchMedia('(min-width: 981px)');
   desktop.addEventListener('change', function (e) { if (e.matches) set(false); });
 })();
 
