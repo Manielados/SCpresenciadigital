@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import EnConstruccion from '../components/EnConstruccion.astro';
+import Cotizador from '../components/Cotizador.astro';
 ---
-<!-- noindex: quítalo cuando la página tenga contenido real, para que Google la indexe. -->
+<!-- noindex: quítalo cuando confirmes los precios de los extras en src/scripts/cotizador-config.js -->
 <Layout
   title="Cotizar tu web · SC Presencia Digital"
-  description="Calcula la inversión de tu página web en pocos minutos según lo que tu negocio necesita."
+  description="Arma tu página web, suma extras y mira el desglose del precio y el tiempo de entrega al instante. Sin compromiso."
   noindex
 >
-  <EnConstruccion etiqueta="Cotizar" titulo="Cotizar tu web" texto="Calcula la inversión de tu web en pocos minutos." />
+  <Cotizador pro />
 </Layout>
