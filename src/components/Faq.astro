@@ -1,12 +1,8 @@
 ---
-import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '../../keystatic.config';
+import { getFaq } from '../lib/faq';
 
-// Lee las preguntas desde src/content/faq (las que edita Keystatic) al hacer el build.
-const reader = createReader(process.cwd(), keystaticConfig);
-const faq = (await reader.collections.faq.all())
-  .map((e) => e.entry)
-  .sort((a, b) => a.orden - b.orden);
+// Las respuestas van escritas en el HTML (no se cargan con JavaScript), así que Google las lee.
+const faq = await getFaq();
 ---
 <section class="faq" id="faq"><div class="w">
   <div><span class="lab">Preguntas frecuentes</span><h2>Lo que suelen preguntarme.</h2></div>

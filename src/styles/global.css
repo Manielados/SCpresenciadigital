@@ -286,3 +286,19 @@ nav.open ~ .wa{opacity:0;pointer-events:none}
 .nf p{color:var(--mut);max-width:52ch;margin:0 0 26px;font-size:17px}
 .nf .acts{display:flex;gap:12px;flex-wrap:wrap}
 
+/* hero: etiqueta + titular dentro del único <h1> (mismo aspecto que antes) */
+.hero h1{max-width:none;margin:0}
+.hero h1 .badge{display:flex;width:fit-content;max-width:100%;margin:0 auto 26px;font:500 11px/1.4 var(--sans);letter-spacing:0;text-align:left}
+.hero h1 .t{display:block;max-width:18ch;margin:0 auto;text-wrap:balance}
+/* para quién: ejemplos */
+.why .ej{color:var(--cream);max-width:54ch;margin:18px auto 0;font-size:15.5px}
+/* quién soy: enlaces */
+.me .soc{font-size:14px;margin-top:14px}
+.me .soc a{color:var(--verm);text-decoration:underline;text-underline-offset:3px}
+/* formulario: enlace a privacidad */
+form small a{color:var(--verm);text-decoration:underline;text-underline-offset:2px}
+/* páginas legales */
+.legal{padding:72px 0 96px;border-top:0}
+.legal .w{max-width:720px}
+.legal h1{font-size:clamp(32px,5vw,48px);margin:8px 0 10px}
+.legal .upd{color:var(--mut);font-size:14px;margin:0 0 32px}

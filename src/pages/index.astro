@@ -9,11 +9,57 @@ import QuienSoy from '../components/QuienSoy.astro';
 import Cotizador from '../components/Cotizador.astro';
 import Contacto from '../components/Contacto.astro';
 import Faq from '../components/Faq.astro';
+import { getFaq } from '../lib/faq';
+
+const title = 'Diseño web para profesionales independientes | SC Presencia Digital';
+const description =
+  'Diseño webs claras para profesionales independientes y negocios de servicio: que se entienda qué haces, den confianza y el siguiente paso sea obvio.';
+
+// Datos estructurados (solo información que aparece en la propia página).
+// Sin reseñas ni valoraciones, sin dirección y sin área de servicio.
+// [PENDIENTE: poner el apellido real en Person.name cuando se defina]
+const home = (Astro.site ?? new URL(Astro.url.origin)).href;
+const instagram = 'https://instagram.com/sc.presenciadigital';
+const faq = await getFaq();
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${home}#negocio`,
+      name: 'SC Presencia Digital',
+      url: home,
+      description,
+      serviceType: 'Diseño web',
+      image: new URL('/og-image.png', home).href,
+      logo: new URL('/assets/logo-sc.png', home).href,
+      email: 'contacto@scpresenciadigital.com',
+      telephone: '+1-809-627-8994',
+      sameAs: [instagram],
+      founder: { '@id': `${home}#fundador` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${home}#fundador`,
+      name: 'Sterling [APELLIDO]',
+      givenName: 'Sterling',
+      jobTitle: 'Fundador de SC Presencia Digital',
+      worksFor: { '@id': `${home}#negocio` },
+      sameAs: [instagram],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({
+        '@type': 'Question',
+        name: f.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+      })),
+    },
+  ],
+}).replace(/</g, '\\u003c');
 ---
-<Layout
-  title="SC Presencia Digital · Webs para profesionales y negocios de servicios"
-  description="Diseño webs para profesionales y negocios de servicios que necesitan convertir interés en confianza y acción. Primero entiendo, investigo y propongo; construyo cuando tú apruebas."
->
+<Layout title={title} description={description}>
+  <script type="application/ld+json" slot="head" set:html={jsonLd} />
   <Hero />
   <Problema />
   <ParaQuien />
