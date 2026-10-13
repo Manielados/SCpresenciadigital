@@ -1,12 +1,17 @@
 ---
-// Marca "Blog" como página activa cuando estás dentro de /blog
-const enBlog = Astro.url.pathname.startsWith('/blog');
+// Marca la página activa en el menú
+const ruta = Astro.url.pathname;
+const enInicio = ruta === '/';
+const enBlog = ruta.startsWith('/blog');
 ---
 <nav id="nav"><div class="w">
 <a class="logo" href="/" aria-label="SC Presencia Digital, inicio"><img src="/assets/logo-sc-crema.png" width="52" height="38" alt="SC Presencia Digital"></a>
 <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
 <div class="menu" id="menu">
-  <a href="/blog/" aria-current={enBlog ? 'page' : undefined}>Blog</a>
+  <div class="links">
+    <a href="/" aria-current={enInicio ? 'page' : undefined}>Inicio</a>
+    <a href="/blog/" aria-current={enBlog ? 'page' : undefined}>Blog</a>
+  </div>
   <a class="btn p" href="/#contacto">Hablemos de tu proyecto</a>
 </div>
 </div></nav>
