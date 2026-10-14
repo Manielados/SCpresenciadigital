@@ -17,7 +17,6 @@ const description =
 
 // Datos estructurados (solo información que aparece en la propia página).
 // Sin reseñas ni valoraciones, sin dirección y sin área de servicio.
-// [PENDIENTE: poner el apellido real en Person.name cuando se defina]
 const home = (Astro.site ?? new URL(Astro.url.origin)).href;
 const instagram = 'https://instagram.com/sc.presenciadigital';
 const faq = await getFaq();
@@ -41,7 +40,7 @@ const jsonLd = JSON.stringify({
     {
       '@type': 'Person',
       '@id': `${home}#fundador`,
-      name: 'Sterling [APELLIDO]',
+      name: 'Sterling Castillo',
       givenName: 'Sterling',
       jobTitle: 'Fundador de SC Presencia Digital',
       worksFor: { '@id': `${home}#negocio` },
