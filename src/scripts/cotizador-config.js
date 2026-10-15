@@ -12,6 +12,7 @@ export const CFG = {
   maxPages: 12,
   copy: { fee: 2000, perPage: 1000, days: 3 },   // cuando el cliente necesita ayuda con los textos
   usdRate: 59.58,                              // 1 USD = RD$59.58
+  maintenance: { DOP: 3000, USD: 50 },          // tarifa mensual fija por moneda
   design: {
     base:    { fee: 0,    days: 0, label: 'con base trabajada' },
     similar: { fee: 4000, days: 2, label: 'parecido a otra web que te gusta' },

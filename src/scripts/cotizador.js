@@ -1,4 +1,5 @@
 import { CFG } from './cotizador-config.js';
+import { quoteDocument } from './cotizacion-documento.js';
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -52,6 +53,9 @@ import { CFG } from './cotizador-config.js';
       return 'US$' + (Math.round(n / CFG.usdRate / 5) * 5).toLocaleString('en-US');
     }
     return 'RD$' + n.toLocaleString('en-US');
+  };
+  var maintenancePrice = function () {
+    return (currency === 'USD' ? 'US$' : 'RD$') + CFG.maintenance[currency].toLocaleString('en-US');
   };
   var radio = function (n) {
     var el = document.querySelector('input[name=' + n + ']:checked');
@@ -132,13 +136,13 @@ import { CFG } from './cotizador-config.js';
       var items = [pagesText(),
         c.help ? 'Te ayudo a definir qué decir' : 'Ya tienes tus textos',
         'Diseño ' + c.d.label];
-      if (c.maint) items.push('Mantenimiento mensual (se cotiza aparte)');
+      if (c.maint) items.push('Mantenimiento mensual: ' + maintenancePrice() + ' / mes (pago aparte)');
       $('picks').innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
     }
     if ($('brk')) {
       $('brk').innerHTML = c.lines.map(function (l) {
         return '<li><span>' + l.label + '</span><b>' + fmt(l.amt) + '</b></li>';
-      }).join('') + (c.maint ? '<li class="note"><span>Mantenimiento mensual</span><b>se cotiza aparte</b></li>' : '');
+      }).join('') + (c.maint ? '<li class="note"><span>Mantenimiento mensual · pago aparte</span><b>' + maintenancePrice() + ' / mes</b></li>' : '');
     }
     if ($('pay')) {
       var half = Math.round(c.price / 2);
@@ -151,6 +155,7 @@ import { CFG } from './cotizador-config.js';
       if (x.perPage) t.push('+' + fmt(x.perPage) + ' por página');
       el.textContent = t.join(' ');
     });
+    $('maint-price').textContent = maintenancePrice() + ' / mes';
     $('cust').hidden = !c.custom;
     if (pro && touched) syncUrl();
   }
@@ -161,6 +166,7 @@ import { CFG } from './cotizador-config.js';
     q.set('p', pages);
     q.set('c', radio('copy'));
     q.set('d', radio('design'));
+    q.set('cur', currency);
     var xs = [];
     document.querySelectorAll('input[name=extra]:checked').forEach(function (i) { xs.push(i.value); });
     if (xs.length) q.set('x', xs.join(','));
@@ -175,6 +181,7 @@ import { CFG } from './cotizador-config.js';
   function check(sel, on) { var el = document.querySelector(sel); if (el) el.checked = on; }
   function loadFromUrl() {
     var q = new URLSearchParams(location.search);
+    if (q.get('cur') === 'DOP' || q.get('cur') === 'USD') currency = q.get('cur');
     if (!q.has('p') && !q.has('x') && !q.has('d') && !q.has('c')) return;
     var p = parseInt(q.get('p'), 10);
     if (p >= 1 && p <= CFG.maxPages) pages = p;
@@ -196,7 +203,7 @@ import { CFG } from './cotizador-config.js';
       '\n• Diseño: ' + c.d.label +
       (c.extras.length ? '\n• Extras: ' + c.extras.map(function (x) { return x.label; }).join(', ') : '') +
       (c.rush ? '\n• Entrega prioritaria' : '') +
-      (c.maint ? '\n• Mantenimiento mensual: quiero cotizarlo aparte' : '') +
+      (c.maint ? '\n• Mantenimiento mensual: ' + maintenancePrice() + ' / mes (pago aparte)' : '') +
       '\nDesde ' + fmt(c.price) + ' · ' + c.lo + '–' + c.hi + ' días hábiles.' +
       (pro ? '\nMi cotización: ' + shareUrl() : '');
   }
@@ -226,6 +233,36 @@ import { CFG } from './cotizador-config.js';
     });
   }
   var copy = $('copylink');
+  var download = $('downloadquote');
+  if (pro && download) {
+    download.addEventListener('click', function () {
+      var c = calc();
+      last = c;
+      var now = new Date();
+      var half = Math.round(c.price / 2);
+      var html = quoteDocument({
+        date: now.toLocaleDateString('es-DO', { year: 'numeric', month: 'long', day: 'numeric' }),
+        currency: currency === 'USD' ? 'USD · dólares estadounidenses' : 'DOP · pesos dominicanos',
+        pages: pagesText(), design: c.d.label,
+        copy: c.help ? 'Ayuda para definir el mensaje y escribir los textos' : 'Textos proporcionados por el cliente',
+        days: c.lo + '–' + c.hi, rush: c.rush, custom: c.custom,
+        lines: c.lines.map(function (line) { return { label: line.label, amount: fmt(line.amt) }; }),
+        total: fmt(c.price), deposit: fmt(half), balance: fmt(c.price - half),
+        maintenance: c.maint ? maintenancePrice() : null,
+        shareUrl: shareUrl(),
+        contactUrl: 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent('Hola, quiero hablar de mi cotización.' + summary())
+      });
+      var url = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'cotizacion-sc-' + now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0') + '.html';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      $('copied').textContent = 'Cotización descargada. Abre el archivo para verla, imprimirla o guardarla como PDF.';
+    });
+  }
   if (copy) {
     copy.addEventListener('click', function () {
       var msg = $('copied');
